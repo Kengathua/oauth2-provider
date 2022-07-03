@@ -1,0 +1,43 @@
+{% extends "registration/base.html" %}
+
+{% block content %}
+<!-- Social Login -->
+            <!-- Username & Password Login form -->
+            <div id = "login" class="user_login">
+                <header class="header-area">
+                    <span class="formheader" style="color: blue;">LOGIN</span>
+                    </header>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <input type="text" class="form-entry" name = "email" placeholder="username or email address" />
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-entry" name ="password" placeholder="password" />
+                    </div>
+                    <div class="checkbox form-group">
+                        <input id="remember" type="checkbox" />
+                        <label for="remember">Remember me on this computer</label>
+                    </div>
+                    <div class = "errormsg">
+                        {% for message in messages %}
+                        <p class = "signerror">
+                            <small>
+                            {{message}}
+                            </small>
+                        </p>
+                        {% endfor %}
+                    </div>
+                    <div class="vbtn">
+                        <button type="submit">Login</button>
+                        <!-- <button type="submit" class="authenticationbtn" onclick="login()">Login</button> -->
+                        <input type="hidden" name="next" value="{{ next }}" />
+                    </div>
+                    <div class="social-sign">
+                        <div class="border border-top-0 c-brd-light my-3"></div>
+                        Don't have an account <a href="/users/sign-up"  class="switch">Sign Up</a>
+                    </div>
+
+                </form>
+            </div>
+{% endblock %}
